@@ -2,15 +2,13 @@ import os
 import json
 import pandas as pd
 
-
 class FewShotPosts:
-    def __init__(self, file_path=None):
-        if file_path is None:
-            file_path = os.path.join(
-                os.path.dirname(__file__),
-                "data",
-                "processed_posts.json"
-            )
+    def __init__(self):
+        file_path = os.path.join("data", "processed_posts.json")
+
+        print("WORKING DIR:", os.getcwd())
+        print("FILE PATH:", file_path)
+        print("EXISTS:", os.path.exists(file_path))
 
         self.df = None
         self.unique_tags = None
@@ -21,10 +19,7 @@ class FewShotPosts:
             posts = json.load(f)
             self.df = pd.json_normalize(posts)
             self.df['length'] = self.df['line_count'].apply(self.categorize_length)
-
-            # FIXED LINE
             all_tags = self.df['tags'].sum()
-
             self.unique_tags = list(set(all_tags))
 
     def get_filtered_posts(self, length, language, tag):
