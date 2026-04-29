@@ -6,17 +6,15 @@ from pathlib import Path
 
 class FewShotPosts:
     def __init__(self):
-        # Get project root
-        base_dir = Path(__file__).resolve().parent
+        file_path = "data/processed_posts.json"
 
-        # Correct file path
-        file_path = base_dir / "data" / "processed_posts.json"
+        # Debug info
+        print("CURRENT DIR:", os.getcwd())
+        print("FILES HERE:", os.listdir())
+        print("DATA FOLDER:", os.listdir("data") if os.path.exists("data") else "NO DATA FOLDER")
+        print("TRYING PATH:", file_path)
 
-        print("BASE DIR:", base_dir)
-        print("FILE PATH:", file_path)
-        print("EXISTS:", file_path.exists())
-
-        if not file_path.exists():
+        if not os.path.exists(file_path):
             raise FileNotFoundError(f"Missing file: {file_path}")
 
         self.df = None
