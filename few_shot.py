@@ -24,7 +24,7 @@ class FewShotPosts:
     def load_posts(self, file_path):
         with open(file_path, "r", encoding="utf-8") as f:
             posts = json.load(f)
-            self.df = pd.json_normalize(posts)
+            self.df = pd.DataFrame(posts)
 
             self.df = self.df.astype(str)
 
