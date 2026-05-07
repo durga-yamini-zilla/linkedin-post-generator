@@ -1,7 +1,6 @@
 streamlit
-pandas==2.1.4
-pyarrow==14.0.2
-numpy==1.26.4
+pandas
+numpy
 langchain
 langchain-groq
 python-dotenv
