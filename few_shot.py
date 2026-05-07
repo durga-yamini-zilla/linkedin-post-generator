@@ -24,16 +24,24 @@ class FewShotPosts:
     def load_posts(self, file_path):
         with open(file_path, "r", encoding="utf-8") as f:
             posts = json.load(f)
-            self.df = pd.DataFrame(posts)
+            clean_posts = []
 
-            self.df = self.df.astype(str)
+    for post in posts:
+        clean_post = {}
+        for k, v in post.items():
+            clean_post[k] = str(v).encode("ascii", "ignore").decode()
+        clean_posts.append(clean_post)
+
+        self.df = pd.DataFrame(clean_posts)
+
+        self.df = self.df.astype(str)
 
             # Add length category
-            self.df['length'] = self.df['line_count'].apply(self.categorize_length)
+        self.df['length'] = self.df['line_count'].apply(self.categorize_length)
 
             # Extract tags
-            all_tags = self.df['tags'].sum()
-            self.unique_tags = list(set(all_tags))
+        all_tags = self.df['tags'].sum()
+        self.unique_tags = list(set(all_tags))
 
  
     def categorize_length(self, line_count):

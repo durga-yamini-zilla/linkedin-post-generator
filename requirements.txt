@@ -1,8 +1,6 @@
 streamlit
-pandas
-numpy
+pandas==2.1.4
+numpy==1.26.4
 langchain
 langchain-groq
 python-dotenv
-sentence-transformers
-scikit-learn
