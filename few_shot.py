@@ -22,9 +22,11 @@ class FewShotPosts:
         self.load_posts(file_path)
 
     def load_posts(self, file_path):
-        with open(file_path, encoding="utf-8") as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             posts = json.load(f)
             self.df = pd.json_normalize(posts)
+
+            self.df = self.df.astype(str)
 
             # Add length category
             self.df['length'] = self.df['line_count'].apply(self.categorize_length)
