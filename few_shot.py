@@ -36,24 +36,18 @@ class FewShotPosts:
             self.unique_tags = list(set(all_tags))
 
  
-    def get_filtered_posts(self, length, language, tag):
-        df_filtered = self.df[
-            (self.df['tags'].apply(lambda tags: tag in tags)) &
-            (self.df['language'] == language) &
-            (self.df['length'] == length)
-        ]
-        return df_filtered.to_dict(orient='records')
-
     def categorize_length(self, line_count):
+        line_count = int(line_count)
+
         if line_count < 5:
             return "Short"
-        elif line_count <= 10:
+        elif line_count < 10:
             return "Medium"
         else:
             return "Long"
 
-    def get_tags(self):
-        return self.unique_tags
+        def get_tags(self):
+            return self.unique_tags
 
 
 

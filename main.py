@@ -1,3 +1,5 @@
+import os
+os.environ["PANDAS_USE_PYARROW"] = "0"
 import streamlit as st
 from few_shot import FewShotPosts
 from post_generator import generate_post
