@@ -6,7 +6,7 @@ load_dotenv()
 
 llm = ChatGroq(
     groq_api_key=os.getenv("GROQ_API_KEY"),
-    model_name="llama-3.3-70b-versatile"
+    model_name="openai/gpt-oss-20b"
 )
 
 if __name__ == "__main__":
